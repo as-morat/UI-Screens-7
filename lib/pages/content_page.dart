@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_getx/routes/routes_names.dart';
 
 class ContentPage extends StatefulWidget {
   const ContentPage({super.key});
@@ -143,7 +144,7 @@ class _ContentPageState extends State<ContentPage> {
                 itemCount: 4,
                 itemBuilder: (_, i) {
                   return GestureDetector(
-                    onTap: () => Get.toNamed("/detail"),
+                    onTap: () => Get.toNamed(RoutesNames.getDetailPage()),
                     child: Container(
                       padding: const EdgeInsets.only(left: 20, top: 20),
                       height: 220,

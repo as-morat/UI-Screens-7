@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_getx/routes/routes_names.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -78,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                     ),
-                    onPressed: () => Get.toNamed("/content"),
+                    onPressed: () => Get.toNamed(RoutesNames.getContentPage()),
                     child: Text(
                       "Get started",
                       style: TextStyle(color: Colors.white),
