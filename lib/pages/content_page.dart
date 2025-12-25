@@ -8,11 +8,10 @@ class ContentPage extends StatefulWidget {
 }
 
 class _ContentPageState extends State<ContentPage> {
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    int currentIndex = 0;
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.only(top: 70),
@@ -34,7 +33,7 @@ class _ContentPageState extends State<ContentPage> {
                   children: [
                     CircleAvatar(
                       radius: 40,
-                      backgroundImage: AssetImage("img/background.jpg"),
+                      backgroundImage: AssetImage("images/background.jpg"),
                     ),
                     SizedBox(width: 10),
                     Column(
@@ -53,7 +52,7 @@ class _ContentPageState extends State<ContentPage> {
                         Text(
                           "Top Level",
                           style: TextStyle(
-                            color: Color(0xFFfdebb2),
+                            color: Color(0xffdcb216),
                             fontSize: 12,
                             decoration: TextDecoration.none,
                           ),
@@ -95,24 +94,35 @@ class _ContentPageState extends State<ContentPage> {
                     ),
                   ),
                   Expanded(child: Container()),
-                  Text(
-                    "Show all",
-                    style: TextStyle(
-                      color: Color(0xFFcfd5b3),
-                      fontSize: 15,
-                      decoration: TextDecoration.none,
-                    ),
-                  ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Row(
+                      children: [
+                        Text(
+                          "Show all",
+                          style: TextStyle(
+                            color: Color(0xffc1c786),
+                            fontSize: 15,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
 
-                  SizedBox(width: 5),
-                  Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Color(0xFFfdc33c),
+                        const SizedBox(width: 5),
+                        Container(
+                          width: 22,
+                          height: 22,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Color(0xFFfdc33c),
+                          ),
+                          child: Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: Colors.white,
+                            size: 16,
+                          ),
+                        ),
+                      ],
                     ),
-                    child: GestureDetector(),
                   ),
                 ],
               ),
@@ -121,6 +131,7 @@ class _ContentPageState extends State<ContentPage> {
             //list
             SizedBox(
               height: 220,
+              width: width,
               child: PageView.builder(
                 controller: PageController(viewportFraction: 0.88),
                 itemCount: 4,
@@ -173,7 +184,9 @@ class _ContentPageState extends State<ContentPage> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(25),
                                       image: DecorationImage(
-                                        image: AssetImage("img/background.jpg"),
+                                        image: AssetImage(
+                                          "images/background.jpg",
+                                        ),
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -202,30 +215,41 @@ class _ContentPageState extends State<ContentPage> {
                       decoration: TextDecoration.none,
                     ),
                   ),
-                  Expanded(child: Container()),
-                  Text(
-                    "Show all",
-                    style: TextStyle(
-                      color: Color(0xFFcfd5b3),
-                      fontSize: 15,
-                      decoration: TextDecoration.none,
-                    ),
-                  ),
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Row(
+                      children: [
+                        Text(
+                          "Show all",
+                          style: TextStyle(
+                            color: Color(0xffc1c786),
+                            fontSize: 15,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
 
-                  SizedBox(width: 5),
-                  Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Color(0xFFfdc33c),
+                        const SizedBox(width: 5),
+                        Container(
+                          width: 22,
+                          height: 22,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Color(0xFFfdc33c),
+                          ),
+                          child: Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: Colors.white,
+                            size: 16,
+                          ),
+                        ),
+                      ],
                     ),
-                    child: GestureDetector(),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Expanded(
               child: MediaQuery.removePadding(
                 context: context,
@@ -253,9 +277,11 @@ class _ContentPageState extends State<ContentPage> {
                           children: [
                             CircleAvatar(
                               radius: 40,
-                              backgroundImage: AssetImage("img/background.jpg"),
+                              backgroundImage: AssetImage(
+                                "images/background.jpg",
+                              ),
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -263,38 +289,30 @@ class _ContentPageState extends State<ContentPage> {
                                 Text(
                                   "Status",
                                   style: TextStyle(
-                                    color: Color(0xFFfdebb2),
+                                    color: Color(0xffdcb216),
                                     fontSize: 12,
                                     decoration: TextDecoration.none,
                                   ),
                                 ),
-                                SizedBox(height: 5),
-                                SizedBox(
-                                  width: 170,
-                                  child: Text(
-                                    "Text",
-
-                                    style: TextStyle(
-                                      color: Color(0xFF3b3f42),
-                                      fontSize: 18,
-                                      decoration: TextDecoration.none,
-                                    ),
+                                const SizedBox(height: 5),
+                                Text(
+                                  "Text",
+                                  style: TextStyle(
+                                    color: Color(0xFF3b3f42),
+                                    fontSize: 18,
+                                    decoration: TextDecoration.none,
                                   ),
                                 ),
                               ],
                             ),
-                            Expanded(child: Container()),
-                            SizedBox(
-                              width: 70,
-                              height: 70,
-
-                              child: Text(
-                                "Time",
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  decoration: TextDecoration.none,
-                                  color: Color(0xFFb2b8bb),
-                                ),
+                            const Spacer(),
+                            Text(
+                              "Time",
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: .w600,
+                                decoration: TextDecoration.none,
+                                color: Color(0xff93adbe),
                               ),
                             ),
                           ],
