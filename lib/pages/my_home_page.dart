@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -23,7 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("img/background.jpg"),
+                  image: AssetImage("images/background.jpg"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -77,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                     ),
-                    onPressed: () => Container(),
+                    onPressed: () => Get.toNamed("/content"),
                     child: Text(
                       "Get started",
                       style: TextStyle(color: Colors.white),
