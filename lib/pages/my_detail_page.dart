@@ -8,11 +8,11 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    int currentIndex = 0;
     return Scaffold(
       body: Container(
         color: Color(0xFFc5e5f3),
@@ -45,7 +45,7 @@ class _DetailPageState extends State<DetailPage> {
                     children: [
                       CircleAvatar(
                         radius: 40,
-                        backgroundImage: AssetImage("img/background.jpg"),
+                        backgroundImage: AssetImage("images/background.jpg"),
                       ),
                       SizedBox(width: 10),
                       Column(
@@ -57,6 +57,7 @@ class _DetailPageState extends State<DetailPage> {
                             style: TextStyle(
                               color: Color(0xFF3b3f42),
                               fontSize: 18,
+
                               decoration: TextDecoration.none,
                             ),
                           ),
@@ -64,7 +65,7 @@ class _DetailPageState extends State<DetailPage> {
                           Text(
                             "Top Level",
                             style: TextStyle(
-                              color: Color(0xFFfdebb2),
+                              color: Color(0xfff0bc20),
                               fontSize: 12,
                               decoration: TextDecoration.none,
                             ),
@@ -288,7 +289,7 @@ class _DetailPageState extends State<DetailPage> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
                         image: DecorationImage(
-                          image: AssetImage("img/background.jpg"),
+                          image: AssetImage("images/background.jpg"),
                           fit: BoxFit.cover,
                         ),
                       ),
