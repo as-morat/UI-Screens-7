@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ContentPage extends StatefulWidget {
   const ContentPage({super.key});
@@ -94,35 +95,32 @@ class _ContentPageState extends State<ContentPage> {
                     ),
                   ),
                   Expanded(child: Container()),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Row(
-                      children: [
-                        Text(
-                          "Show all",
-                          style: TextStyle(
-                            color: Color(0xffc1c786),
-                            fontSize: 15,
-                            decoration: TextDecoration.none,
-                          ),
+                  Row(
+                    children: [
+                      Text(
+                        "Show all",
+                        style: TextStyle(
+                          color: Color(0xffc1c786),
+                          fontSize: 15,
+                          decoration: TextDecoration.none,
                         ),
+                      ),
 
-                        const SizedBox(width: 5),
-                        Container(
-                          width: 22,
-                          height: 22,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            color: Color(0xFFfdc33c),
-                          ),
-                          child: Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: Colors.white,
-                            size: 16,
-                          ),
+                      const SizedBox(width: 5),
+                      Container(
+                        width: 22,
+                        height: 22,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          color: Color(0xFFfdc33c),
                         ),
-                      ],
-                    ),
+                        child: Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: Colors.white,
+                          size: 16,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -137,6 +135,7 @@ class _ContentPageState extends State<ContentPage> {
                 itemCount: 4,
                 itemBuilder: (_, i) {
                   return GestureDetector(
+                    onTap: () => Get.toNamed("/detail"),
                     child: Container(
                       padding: const EdgeInsets.only(left: 20, top: 20),
                       height: 220,
