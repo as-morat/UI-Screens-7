@@ -14,8 +14,16 @@ class _ContentPageState extends State<ContentPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 50,
+        backgroundColor: Color(0xFFc5e5f3),
+        leading: IconButton(
+          onPressed: () => Get.back(),
+          icon: Icon(Icons.arrow_back_ios),
+        ),
+      ),
       body: Container(
-        padding: const EdgeInsets.only(top: 70),
+        padding: const EdgeInsets.only(top: 20),
         color: Color(0xFFc5e5f3),
         child: Column(
           children: [
