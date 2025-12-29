@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_getx/controllers/data_controller.dart';
 
-class DetailPage extends StatefulWidget {
+class DetailPage extends GetView<DataController> {
   const DetailPage({super.key});
 
-  @override
-  State<DetailPage> createState() => _DetailPageState();
-}
-
-class _DetailPageState extends State<DetailPage> {
-  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
+    final String? id = Get.parameters["id"];
+    if (id == null || id.isEmpty || int.tryParse(id) == null) {
+      Get.back();
+      return Center(child: Text("No data has been found!!"));
+    }
+    final index = int.parse(id);
+    final contest = controller.dataList[index];
+
     return Scaffold(
       body: Container(
         color: Color(0xFFc5e5f3),
@@ -46,7 +50,7 @@ class _DetailPageState extends State<DetailPage> {
                     children: [
                       CircleAvatar(
                         radius: 40,
-                        backgroundImage: AssetImage("images/background.jpg"),
+                        backgroundImage: AssetImage(contest.img),
                       ),
                       SizedBox(width: 10),
                       Column(
@@ -54,7 +58,7 @@ class _DetailPageState extends State<DetailPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "name",
+                            contest.name,
                             style: TextStyle(
                               color: Color(0xFF3b3f42),
                               fontSize: 18,
@@ -134,7 +138,7 @@ class _DetailPageState extends State<DetailPage> {
                       Row(
                         children: [
                           Text(
-                            "Title",
+                            contest.title,
                             style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.w500,
@@ -147,9 +151,11 @@ class _DetailPageState extends State<DetailPage> {
                       SizedBox(
                         width: width,
                         child: Text(
-                          "Text",
+                          contest.text,
+                          maxLines: 2,
                           style: TextStyle(
-                            fontSize: 20,
+                            overflow: .ellipsis,
+                            fontSize: 14,
                             color: Color(0xFFb8b8b8),
                           ),
                         ),
@@ -170,7 +176,7 @@ class _DetailPageState extends State<DetailPage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "name",
+                                    contest.name,
                                     style: TextStyle(
                                       fontSize: 18,
                                       color: Color(0xFF303030),
@@ -178,7 +184,7 @@ class _DetailPageState extends State<DetailPage> {
                                     ),
                                   ),
                                   Text(
-                                    "Deadline",
+                                    contest.time,
                                     style: TextStyle(
                                       fontSize: 18,
                                       color: Color(0xFFacacac),
@@ -201,7 +207,7 @@ class _DetailPageState extends State<DetailPage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "499",
+                                    contest.prize,
                                     style: TextStyle(
                                       fontSize: 18,
                                       color: Color(0xFF303030),
@@ -269,7 +275,7 @@ class _DetailPageState extends State<DetailPage> {
                   ),
                   children: [
                     TextSpan(
-                      text: "(11)",
+                      text: controller.dataList.length.toString(),
                       style: TextStyle(color: Color(0xFFfbc33e)),
                     ),
                   ],
@@ -279,7 +285,7 @@ class _DetailPageState extends State<DetailPage> {
             //images
             Stack(
               children: [
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < controller.dataTempList.length; i++)
                   Positioned(
                     top: 590,
                     left: (20 + i * 35).toDouble(),
@@ -289,7 +295,7 @@ class _DetailPageState extends State<DetailPage> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
                         image: DecorationImage(
-                          image: AssetImage("images/background.jpg"),
+                          image: AssetImage(controller.dataTempList[i].img),
                           fit: BoxFit.cover,
                         ),
                       ),
