@@ -11,7 +11,7 @@ class RoutesNames {
   static const String contentPage = "/content-page";
 
   static String getInitial() => initial;
-  static String getDetailPage() => detailPage;
+  static String getDetailPage(int id) => "$detailPage?id=$id";
   static String getContentPage() => contentPage;
 
   static List<GetPage> routes = [
