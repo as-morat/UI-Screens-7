@@ -8,6 +8,9 @@ class DataController extends GetxController {
   final RxList<DetailDataModel> _dataList = <DetailDataModel>[].obs;
   List<DetailDataModel> get dataList => _dataList.value;
 
+  final RxList<DetailDataModel> _dataTempList = <DetailDataModel>[].obs;
+  List<DetailDataModel> get dataTempList => _dataTempList.value;
+
   final RxBool isLoading = true.obs;
 
   @override
@@ -23,13 +26,19 @@ class DataController extends GetxController {
   }
 
   Future<void> loadJsonData() async {
-    final String jsonString =
-    await rootBundle.loadString("data/detail.json");
+    final String jsonString = await rootBundle.loadString("data/detail.json");
     final List<dynamic> jsonData = jsonDecode(jsonString);
 
     _dataList.assignAll(
       jsonData.map((e) => DetailDataModel.fromJson(e)).toList(),
     );
   }
-}
 
+  void updateTempList(int index) {
+    List<DetailDataModel> sortList = List.from(_dataList);
+    DetailDataModel target = sortList[index];
+    sortList.removeAt(index);
+    sortList.insert(0, target);
+    _dataTempList.assignAll(sortList);
+  }
+}
