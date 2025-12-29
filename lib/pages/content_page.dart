@@ -12,9 +12,7 @@ class ContentPage extends StatelessWidget {
 
     return Obx(() {
       if (controller.isLoading.value) {
-        return const Scaffold(
-          body: Center(child: CircularProgressIndicator()),
-        );
+        return const Scaffold(body: Center(child: CircularProgressIndicator()));
       }
 
       return Scaffold(
@@ -45,8 +43,7 @@ class ContentPage extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 40,
-                    backgroundImage:
-                    AssetImage(controller.dataList.first.img),
+                    backgroundImage: AssetImage(controller.dataList.first.img),
                   ),
                   const SizedBox(width: 12),
 
@@ -107,8 +104,10 @@ class ContentPage extends StatelessWidget {
                 itemBuilder: (_, i) {
                   final contest = controller.dataList[i];
                   return GestureDetector(
-                    onTap: () =>
-                        Get.toNamed(RoutesNames.getDetailPage()),
+                    onTap: () {
+                      controller.updateTempList(i);
+                      Get.toNamed(RoutesNames.getDetailPage(i));
+                    },
                     child: Container(
                       margin: const EdgeInsets.only(right: 12),
                       padding: const EdgeInsets.all(20),
@@ -167,60 +166,68 @@ class ContentPage extends StatelessWidget {
                 itemCount: controller.dataList.length,
                 itemBuilder: (_, i) {
                   final contest = controller.dataList[i];
-                  return Container(
-                    height: 100,
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 25, vertical: 10),
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFebf8fd),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 28,
-                          backgroundImage: AssetImage(contest.img),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                contest.title,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  fontSize: 15,
-                                  color: Color(0xffdcb216),
-                                ),
-                              ),
-                              const SizedBox(height: 6),
-                              Text(
-                                contest.text,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  color: Color(0xFF3b3f42),
-                                ),
-                              ),
-                            ],
+                  return GestureDetector(
+                    onTap: () {
+                      controller.updateTempList(i);
+                      Get.toNamed(RoutesNames.getDetailPage(i));
+                    },
+                    child: Container(
+                      height: 100,
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 25,
+                        vertical: 10,
+                      ),
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFebf8fd),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 28,
+                            backgroundImage: AssetImage(contest.img),
                           ),
-                        ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  contest.title,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                    color: Color(0xffdcb216),
+                                  ),
+                                ),
+                                const SizedBox(height: 6),
+                                Text(
+                                  contest.text,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Color(0xFF3b3f42),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
 
-                        const SizedBox(width: 8),
-                        Text(
-                          contest.time,
-                          style: const TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xff93adbe),
+                          const SizedBox(width: 8),
+                          Text(
+                            contest.time,
+                            style: const TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xff93adbe),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -242,10 +249,7 @@ class ContentPage extends StatelessWidget {
               title,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 20,
-                color: Color(0xFF1f2326),
-              ),
+              style: const TextStyle(fontSize: 20, color: Color(0xFF1f2326)),
             ),
           ),
           const SizedBox(width: 8),
@@ -254,10 +258,7 @@ class ContentPage extends StatelessWidget {
             children: [
               const Text(
                 "Show all",
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Color(0xffc1c786),
-                ),
+                style: TextStyle(fontSize: 15, color: Color(0xffc1c786)),
               ),
               const SizedBox(width: 5),
               Container(
